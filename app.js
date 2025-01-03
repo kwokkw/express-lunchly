@@ -1,25 +1,26 @@
 /** Express app for Lunchly. */
 
-const express = require("express");
-const nunjucks = require("nunjucks");
-const bodyParser = require("body-parser");
-const routes = require("./routes");
+import express from "express";
+import pkg from "nunjucks";
+import { urlencoded } from "express";
+import routes from "./routes.js";
 
 const app = express();
+const { configure } = pkg;
 
 // Parse body for urlencoded (non-JSON) data
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(urlencoded({ extended: false }));
 
-nunjucks.configure("templates", {
+configure("templates", {
   autoescape: true,
-  express: app
+  express: app,
 });
 
 app.use(routes);
 
 /** 404 handler */
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new Error("Not Found");
   err.status = 404;
 
@@ -35,4 +36,4 @@ app.use((err, req, res, next) => {
   return res.render("error.html", { err });
 });
 
-module.exports = app;
+export default app;

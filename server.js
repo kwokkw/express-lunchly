@@ -1,7 +1,7 @@
 /** Start server for Lunchly. */
 
-const app = require("./app");
+import app from "./app.js";
 
-app.listen(3000, function() {
+app.listen(3000, function () {
   console.log("listening on 3000");
 });

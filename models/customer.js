@@ -1,7 +1,9 @@
 /** Customer for Lunchly */
 
-const db = require("../db");
-const Reservation = require("./reservation");
+import db from "../db.js";
+import Reservation from "./reservation.js";
+import pkg from "moment";
+const { fn } = pkg;
 
 /** Customer of the restaurant. */
 
@@ -12,6 +14,11 @@ class Customer {
     this.lastName = lastName;
     this.phone = phone;
     this.notes = notes;
+  }
+
+  /* get full name */
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
   }
 
   /** find all customers. */
@@ -26,7 +33,7 @@ class Customer {
        FROM customers
        ORDER BY last_name, first_name`
     );
-    return results.rows.map(c => new Customer(c));
+    return results.rows.map((c) => new Customer(c));
   }
 
   /** get a customer by ID. */
@@ -79,5 +86,4 @@ class Customer {
     }
   }
 }
-
-module.exports = Customer;
+export default Customer;

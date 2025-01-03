@@ -29,6 +29,12 @@ Instead, it’s a server-side templated application with custom URLs.
 
 ## My process
 
+- Part One: Setting Up
+
+  1. Create a project folder, Git repo, and package.json
+
+  `npm install -y`
+
 ### Built with
 
 ### What I learned
